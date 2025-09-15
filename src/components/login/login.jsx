@@ -1,37 +1,55 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
-
+   const navigate = useNavigate();
    const { signIn } = useContext(AuthContext);
+   const [error, setError] = useState();
 
    const handleSignIn = event => {
       event.preventDefault();
+      setError('');
+
       const form = event.target;
       const email = form.email.value;
       const password = form.password.value;
       console.log(email, password);
+      // navigate('/');
 
       signIn(email, password)
          .then(result => {
             const user = result.user;
             console.log(user);
+            form.reset();
+            navigate('/');
          })
-         .catch(error => console.log(error))
+         .catch(error => {
+            console.log(error);
+            setError("Failed to login. Please check your credentials.");
+         })
+
+
    }
    return (
       <div className="h-[600px] overflow-hidden flex items-center justify-center bg-gradient-to-r from-blue-500 via-indigo-600 to-indigo-700 font-[Poppins] border-indigo-900 border-4 rounded-xl bg-gray-50">
          <div className="bg-white max-w-sm w-full p-10 text-center shadow-lg rounded-2xl">
             <h1 className="text-3xl text-center font-bold pb-5">Login</h1>
+            {error && (
+               <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                  {error}
+               </div>
+            )}
             <form onSubmit={handleSignIn} className="space-y-4">
                <input
                   type="email"
+                  name="email"
                   placeholder="email"
                   className="w-full p-4 bg-gray-100 rounded-2xl outline-none text-lg"
                />
                <input
                   type="password"
+                  name="password"
                   placeholder="password"
                   className="w-full p-4 bg-gray-100 rounded-2xl outline-none text-lg"
                />

@@ -10,6 +10,7 @@ const Employee = () => {
          .then(res => res.json())
          .then(data => setEmployee(data))
    }, [])
+
    return (
       <div>
          <h1>this is employee section</h1>

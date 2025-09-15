@@ -1,8 +1,14 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
 export const SidePanel = () => {
-   // You don't actually need this function for basic active state styling
-   // const handleClickActive = () => {}
+   const { user, logOut } = useContext(AuthContext);
+   const handleLogout = () => {
+      logOut()
+         .then(() => { })
+         .catch(error => console.log(error))
+   }
 
    return (
       <div className="w-full h-full bg-white rounded-xl shadow-md p-5">
@@ -25,7 +31,7 @@ export const SidePanel = () => {
                {({ isActive }) => (
                   <>
                      <div className='flex items-center gap-2'>
-                        <img src="src/assets/imgs/Vector.svg" className='size-5 text-[#9197B3] ' alt="icon" />
+                        <img src="src/assets/imgs/Vector.svg" className='size-5 text-[#0d34df] ' alt="icon" />
                         <span className="text-base font-medium ">Employee</span>
                      </div>
                      {isActive && <img src="src/assets/imgs/chevron-right 2.svg" alt="chevron" />}
@@ -71,14 +77,19 @@ export const SidePanel = () => {
             <NavLink to="/profile" className="text-base font-medium text-[#9197B3] ml-1 mt-4">
                Profile
             </NavLink>
-            <div className='flex flex-row gap-2'>
-               <NavLink to="/login" className="text-base font-medium text-[#9197B3] ml-1 mt-4">
-                  Login
-               </NavLink>
-               <NavLink to="/registration" className="text-base font-medium text-[#9197B3] ml-1 mt-4">
-                  Registration
-               </NavLink>
+            <div>
+               {user?.email
+                  ? <button onClick={handleLogout} className="text-base font-medium text-[#9197B3] ml-1 mt-4">Log out</button>
+                  : <div className='flex flex-row gap-2'>
+                     <NavLink to="/login" className="text-base font-medium text-[#9197B3] ml-1 mt-4">
+                        Login
+                     </NavLink>
+                     <NavLink to="/registration" className="text-base font-medium text-[#9197B3] ml-1 mt-4">
+                        Registration
+                     </NavLink>
+                  </div>}
             </div>
+
          </div>
       </div>
    );
