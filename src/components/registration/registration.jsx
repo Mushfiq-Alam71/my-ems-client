@@ -12,36 +12,51 @@ const Registration = () => {
       const email = form.email.value;
       const name = form.name.value;
       const role = form.role.value;
+      const deptartment = form.department.value;
       const password = form.password.value;
-      console.log(email, name, role, password);
+      console.log(email, name, role, deptartment);
+
+      const user = { name, email, role, deptartment };
+
+      fetch('http://localhost:5000/users', {
+         method: 'POST',
+         headers: {
+            'Content-type': "application/json"
+         },
+         body: JSON.stringify(user)
+      })
 
       createUser(email, password)
          .then(result => {
             const user = result.user;
             console.log(user);
-         }).catch(error => console.log(error))
+         })
+         .catch(error => console.log(error))
    }
    return (
       <div className="h-[600px] overflow-hidden flex items-center justify-center bg-gradient-to-r from-blue-500 via-indigo-600 to-indigo-700 font-[Poppins] border-indigo-900 border-4 rounded-xl bg-gray-50">
          <div className="bg-white max-w-sm w-full p-10 text-center shadow-lg rounded-2xl">
             <h1 className="text-3xl text-center font-bold pb-5">Registration</h1>
             <form onSubmit={handleRegister} className="space-y-4">
+               {/* email */}
                <input
                   type="email"
                   placeholder="Email"
                   name="email"
-                  className="w-full p-4 bg-gray-100 rounded-2xl outline-none text-lg" />
+                  className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg" />
+               {/* name */}
                <div className="flex flex-row gap-2.5">
                   <input type="text" placeholder="Enter your Name" name="name"
-                     className="w-full p-4 bg-gray-100 rounded-2xl outline-none text-lg"
+                     className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg"
                   />
                </div>
+               {/* role */}
                <div>
                   <input
                      list="role-options"
                      name="role"
                      placeholder="Role"
-                     className="w-full p-4 bg-gray-100 rounded-2xl outline-none text-lg"
+                     className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg"
                   />
                   <datalist id="role-options">
                      <option value="Admin" />
@@ -49,11 +64,37 @@ const Registration = () => {
                      <option value="Employee" />
                   </datalist>
                </div>
+               {/* department */}
+               <div>
+                  <input
+                     list="department-options"
+                     name="department"
+                     placeholder="Department"
+                     className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg"
+                  />
+                  <datalist id="department-options">
+                     <option value="IT" />
+                     <option value="Design" />
+                     <option value="Business Development" />
+                     <option value="Management" />
+                     <option value="Marketing" />
+                     <option value="Sales" />
+                     <option value="Account Management" />
+                     <option value="Finance" />
+                     <option value="Human Resources" />
+                     <option value="Quality Assurance" />
+                     <option value="DevOps" />
+                     <option value="Data Analyst" />
+                     <option value="Networking" />
+                     <option value="Customer Support" />
+                  </datalist>
+               </div>
+               {/* password */}
                <input
                   type="password"
                   placeholder="Password"
                   name="password"
-                  className="w-full p-4 bg-gray-100 rounded-2xl outline-none text-lg"
+                  className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg"
                />
                <button
                   type="submit"
