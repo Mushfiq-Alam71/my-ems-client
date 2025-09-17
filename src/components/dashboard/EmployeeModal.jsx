@@ -1,6 +1,6 @@
 
 const EmployeeModal = ({ employee }) => {
-   const { _id, first_name, last_name, email, gender, phone } = employee;
+   const { _id, first_name, last_name, email, gender, phone, role, department } = employee;
    const modalID = `employee_modal_${_id}`;
    return (
       <div>
@@ -12,12 +12,14 @@ const EmployeeModal = ({ employee }) => {
             <div className="modal-box border-4 border-purple-700">
                <h3 className="font-bold text-lg">{first_name + " " + last_name}</h3>
                <div className="">
-                  <p>Email: {email}</p>
-                  <p>Gender: {gender}</p>
-                  <p>Phone Number: {phone}</p>
+                  <p className=""><span className="font-bold">Email:</span> {email}</p>
+                  <p><span className="font-bold">Gender:</span> {gender}</p>
+                  <p><span className="font-bold">Phone number:</span> {phone}</p>
+                  <p><span className="font-bold">Role:</span> {role}</p>
+                  <p><span className="font-bold">Department:</span> {department}</p>
                </div>
             </div>
-            <form method="dialog" className="modal-backdrop">
+            <form method="dialog" className="modal-backdrop overflow-x-hidden">
                <button>close</button>
             </form>
          </dialog>
