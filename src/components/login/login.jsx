@@ -59,12 +59,16 @@ const Login = () => {
                >
                   Login
                </button>
-               <p className="text-gray-400 text-xs mt-4">
-                  Not registered?{" "}
-                  <Link to="/registration" className="text-indigo-800 hover:underline">
-                     Create an account
-                  </Link>
-               </p>
+               <div className="text-gray-400 text-xs mt-4 flex flex-row gap-2 justify-center items-center">
+                  <div><Link to="/" className="hover:underline">Home</Link></div>
+                  <div>|</div>
+                  <div>
+                     Not registered?{" "}
+                     <Link to="/registration" className="text-indigo-800 hover:underline">
+                        Register
+                     </Link>
+                  </div>
+               </div>
             </form>
          </div>
       </div>

@@ -9,7 +9,7 @@ const Profile = () => {
    useEffect(() => {
       if (!user?.email) return; // wait until user is loaded
 
-      fetch(`http://localhost:5000/users?email=${user.email}`)
+      fetch(`http://localhost:5000/user?email=${user.email}`)
          .then(res => {
             if (!res.ok) throw new Error("Failed to fetch user data");
             return res.json();

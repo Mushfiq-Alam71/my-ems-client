@@ -38,16 +38,25 @@ const Registration = () => {
    }
    return (
       <div className="h-[600px] overflow-hidden flex items-center justify-center bg-gradient-to-r from-blue-500 via-indigo-600 to-indigo-700 font-[Poppins] border-indigo-900 border-4 rounded-xl bg-gray-50">
-         <div className="bg-white max-w-sm w-full p-10 text-center shadow-lg rounded-2xl">
+         <div className="bg-white max-w-lg w-full p-10 text-center shadow-lg rounded-2xl">
             <h1 className="text-3xl text-center font-bold pb-5">Registration</h1>
             <form onSubmit={handleRegister} className="space-y-4">
 
-               {/* email */}
-               <input
-                  type="email"
-                  placeholder="Email"
-                  name="email"
-                  className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg" />
+               <div className="flex flex-row gap-2.5">
+                  {/* email */}
+                  <input
+                     type="email"
+                     placeholder="Email"
+                     name="email"
+                     className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg" />
+
+                  {/* phone number */}
+                  <input
+                     type="phone"
+                     placeholder="Phone Number"
+                     name="phone"
+                     className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg" />
+               </div>
 
                {/* name */}
                <div className="flex flex-row gap-2.5">
@@ -58,25 +67,20 @@ const Registration = () => {
                      className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg"
                   />
                </div>
-               {/* gender */}
-               <input
-                  list="gender-options"
-                  placeholder="Select your Gender"
-                  name="gender"
-                  className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg"
-               />
-               <datalist id="gender-options">
-                  <option value="Male"></option>
-                  <option value="Female"></option>
-               </datalist>
-               {/* phone number */}
-               <input
-                  type="phone"
-                  placeholder="Phone Number"
-                  name="phone"
-                  className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg" />
 
                <div className="flex flex-row gap-2.5">
+                  {/* gender */}
+                  <input
+                     list="gender-options"
+                     placeholder="Select your Gender"
+                     name="gender"
+                     className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg"
+                  />
+                  <datalist id="gender-options">
+                     <option value="Male"></option>
+                     <option value="Female"></option>
+                  </datalist>
+
                   {/* role */}
                   <div>
                      <input
@@ -127,6 +131,7 @@ const Registration = () => {
                   name="password"
                   className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg"
                />
+               <input />
                {/* submit button */}
                <button
                   type="submit"
@@ -134,12 +139,16 @@ const Registration = () => {
                >
                   Sign Up
                </button>
-               <p className="text-gray-400 text-xs mt-4">
-                  Already registered?{" "}
-                  <Link to="/login" className="text-indigo-800 hover:underline">
-                     Log In
-                  </Link>
-               </p>
+               <div className="text-gray-400 text-xs mt-4 flex flex-row gap-2 justify-center items-center">
+                  <div><Link to="/" className="hover:underline">Home</Link></div>
+                  <div>|</div>
+                  <div>
+                     Already registered?{" "}
+                     <Link to="/login" className="text-indigo-800 hover:underline">
+                        Log In
+                     </Link>
+                  </div>
+               </div>
             </form>
          </div>
       </div>
