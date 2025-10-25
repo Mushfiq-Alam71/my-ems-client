@@ -1,9 +1,21 @@
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Registration = () => {
 
+   const inputRef = useRef(null);
+   const [image, setImage] = useState(null);
+
+   const handleImageClick = () => {
+      inputRef.current.click();
+   }
+
+   const handleImageChange = (event) => {
+      const file = event.target.files[0];
+      console.log(file);
+      setImage(event.target.files[0]);
+   }
    const { createUser } = useContext(AuthContext);
 
    const handleRegister = event => {
@@ -101,7 +113,7 @@ const Registration = () => {
                      <input
                         list="department-options"
                         name="department"
-                        placeholder="Department"
+                        placeholder="Dept"
                         className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg"
                      />
                      <datalist id="department-options">
@@ -131,7 +143,14 @@ const Registration = () => {
                   name="password"
                   className="w-full py-2 px-4 bg-gray-100 rounded-2xl outline-none text-lg"
                />
-               <input />
+
+               {/* image upload */}
+               <div onClick={handleImageClick} className="cursor-pointer inline-block ">
+                  {/* <img className="w-20" src="../../../public/images/image_upload.jpg" alt="" /> */}
+                  {image ? <img className="w-20 rounded-full" src={URL.createObjectURL(image)} /> : <img className="w-20 rounded-2xl" src="../../../public/images/image_upload.jpg" alt="uploaded_image" />}
+                  <input type="file" ref={inputRef} onChange={handleImageChange} className="hidden" />
+               </div>
+
                {/* submit button */}
                <button
                   type="submit"

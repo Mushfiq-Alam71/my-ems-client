@@ -6,7 +6,7 @@ import Expense from "../components/dashboard/Expense";
 import Profile from "../components/dashboard/Profile";
 import Setting from "../components/dashboard/Setting";
 import Login from "../components/Login/Login";
-import Registration from "../components/Registration/Registration";
+import Registration from "../components/registration/registration";
 
 const router = createBrowserRouter([
    {
